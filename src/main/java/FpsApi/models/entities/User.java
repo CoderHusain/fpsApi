@@ -17,6 +17,8 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     Set<UserPlayLog> userPlayLogs = new HashSet<>();
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     @Id
     Long id;
 

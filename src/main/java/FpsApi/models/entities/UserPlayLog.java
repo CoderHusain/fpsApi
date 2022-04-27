@@ -1,5 +1,6 @@
 package FpsApi.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,19 +13,22 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "UserPlayLog")
-@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class UserPlayLog {
 
-    UserPlayLog(String gameMode, BigDecimal totalPlayers){
+    public UserPlayLog(){}
+    public UserPlayLog(String gameMode, long totalPlayers){
         this.gameMode = gameMode;
         this.totalPlayers = totalPlayers;
     }
 
     @Transient
-    BigDecimal totalPlayers;
+    long totalPlayers;
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
@@ -40,5 +44,8 @@ public class UserPlayLog {
     @Column
     private LocalDateTime endDateTime;
 
+
+    @Transient
+    String userGuid;
 
 }
