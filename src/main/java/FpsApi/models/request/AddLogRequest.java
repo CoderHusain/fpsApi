@@ -12,9 +12,13 @@ public class AddLogRequest {
 
 
     String gameMode;
+    String guid;
     String userGuid;
-    LocalDateTime startdateTime;
-    String startdateTimeStr;
+    LocalDateTime startDateTime;
+    String startDateTimeStr;
+
+    LocalDateTime lastModifiedTime;
+    String lastModifiedTimeStr;
 
     LocalDateTime endDateTime;
     String endDateTimeStr;
@@ -22,7 +26,16 @@ public class AddLogRequest {
     public void setStartDateTimeStr(String startDateTimeStr){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
         try{
-            this.startdateTime = LocalDateTime.parse(startDateTimeStr,formatter);
+            this.startDateTime = LocalDateTime.parse(startDateTimeStr,formatter);
+            this.startDateTimeStr = startDateTimeStr;
+        } catch (Exception e){}
+    }
+
+    public void setLastModifiedTimeStr(String lastModifiedTimeStr){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
+        try{
+            this.lastModifiedTime = LocalDateTime.parse(lastModifiedTimeStr,formatter);
+            this.lastModifiedTimeStr = lastModifiedTimeStr;
         } catch (Exception e){}
     }
 
@@ -30,6 +43,8 @@ public class AddLogRequest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
         try{
             this.endDateTime = LocalDateTime.parse(endDateTimeStr,formatter);
+            this.endDateTimeStr = endDateTimeStr;
         } catch (Exception e){}
     }
+
 }

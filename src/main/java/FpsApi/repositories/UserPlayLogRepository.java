@@ -1,5 +1,6 @@
 package FpsApi.repositories;
 
+import FpsApi.Constants;
 import FpsApi.models.entities.User;
 import FpsApi.models.entities.UserPlayLog;
 import org.springframework.stereotype.Repository;
@@ -24,6 +25,13 @@ public class UserPlayLogRepository extends AbstractRepository<UserPlayLog> {
         hql += " GROUP BY log.gameMode";
         TypedQuery<UserPlayLog> query = entityManager.createQuery(hql,UserPlayLog.class);
         query.setParameter("dateTime",dateTime);
+        return query.getResultList();
+    }
+
+    public List<UserPlayLog> getLogsByStatus(Constants.PlayingStatus status){
+        String hql = "SELECT * FROM UserPlayLog where playingStatus = :status ";
+        TypedQuery<UserPlayLog> query = entityManager.createQuery(hql,UserPlayLog.class);
+        query.setParameter("status",status);
         return query.getResultList();
     }
 }

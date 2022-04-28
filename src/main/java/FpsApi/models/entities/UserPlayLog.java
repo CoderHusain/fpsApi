@@ -1,5 +1,6 @@
 package FpsApi.models.entities;
 
+import FpsApi.Constants;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -21,9 +23,16 @@ public class UserPlayLog {
         this.gameMode = gameMode;
         this.totalPlayers = totalPlayers;
     }
-
     @Transient
     long totalPlayers;
+
+    @Column
+    String guid;
+
+    @PrePersist
+    public void persistGuid() {
+        guid = UUID.randomUUID().toString().toUpperCase();
+    }
 
 
     @Id
@@ -45,7 +54,10 @@ public class UserPlayLog {
     private LocalDateTime endDateTime;
 
 
-    @Transient
-    String userGuid;
+    @Column
+    LocalDateTime lastModifiedTime;
+
+    @Column
+    Constants.PlayingStatus playingStatus;
 
 }

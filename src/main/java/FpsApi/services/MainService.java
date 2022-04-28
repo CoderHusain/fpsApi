@@ -53,9 +53,18 @@ public class MainService {
         UserPlayLog log = new UserPlayLog();
         log.setUser(user);
         log.setGameMode(logRequest.getGameMode());
-        log.setStartDateTime(logRequest.getStartdateTime());
-        log.setEndDateTime(logRequest.getEndDateTime());
+        log.setStartDateTime(logRequest.getStartDateTime());
+//        log.setEndDateTime(logRequest.getEndDateTime());
         logRepository.save(log);
+        response.setSuccess(true);
+        return response;
+    }
+
+    public AbstractResponse updateUserPlayLog(AddLogRequest logRequest) throws Exception {
+        AbstractResponse response = new AbstractResponse();
+        UserPlayLog userPlayLog = logRepository.findByGuid(logRequest.getGuid());
+        userPlayLog.setLastModifiedTime(logRequest.getLastModifiedTime());
+        logRepository.save(userPlayLog);
         response.setSuccess(true);
         return response;
     }
