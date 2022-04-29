@@ -3,11 +3,9 @@ package FpsApi.models.entities;
 import FpsApi.Constants;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -41,10 +39,10 @@ public class UserPlayLog {
     Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user" , nullable = false)
     User user;
 
-    @Column
+    @Column(nullable = false)
     String gameMode;
 
     @Column
