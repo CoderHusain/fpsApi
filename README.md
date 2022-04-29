@@ -1,1 +1,1 @@
-# FPS API
+# FPS REST API
