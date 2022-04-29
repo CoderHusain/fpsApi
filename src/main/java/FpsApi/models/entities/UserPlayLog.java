@@ -58,4 +58,7 @@ public class UserPlayLog {
     @Column
     Constants.PlayingStatus playingStatus;
 
+    @Column
+    String locationCode;
+
 }

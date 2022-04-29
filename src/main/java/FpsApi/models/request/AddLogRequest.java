@@ -23,6 +23,7 @@ public class AddLogRequest {
     LocalDateTime endDateTime;
     String endDateTimeStr;
 
+    String locationCode;
     public void setStartDateTimeStr(String startDateTimeStr){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         try{

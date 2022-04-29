@@ -27,7 +27,7 @@ public class MainService {
     UserPlayLogRepository logRepository;
 
     public FetchLogResponse fetchMaxPlayerMode(FetchLogRequest fetchLogRequest){
-        List<UserPlayLog> logs = logRepository.aggregateByLocationMode(fetchLogRequest.getDateTime());
+        List<UserPlayLog> logs = logRepository.aggregateByLocationMode(fetchLogRequest.getDateTime(), fetchLogRequest.getLocationCode());
         FetchLogResponse response = new FetchLogResponse();
         UserPlayLog maxMode = null;
         long max = 0L;
@@ -57,7 +57,7 @@ public class MainService {
         log.setGameMode(logRequest.getGameMode());
         log.setPlayingStatus(Constants.PlayingStatus.PLAYING);
         log.setStartDateTime(logRequest.getStartDateTime());
-//        log.setEndDateTime(logRequest.getEndDateTime());
+        log.setLocationCode(logRequest.getLocationCode());
         logRepository.save(log);
         response.setSuccess(true);
         return response;

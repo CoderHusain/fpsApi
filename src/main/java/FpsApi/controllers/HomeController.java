@@ -18,10 +18,6 @@ public class HomeController {
     @Autowired
     MainService mainService;
 
-    @GetMapping
-    public String home(){
-        return "homepage";
-    }
 
     @PostMapping(value = "/maxPlayers")
     public FetchLogResponse fetchMaxPlayedMode(@RequestBody FetchLogRequest request){

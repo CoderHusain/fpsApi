@@ -11,6 +11,8 @@ import java.util.logging.SimpleFormatter;
 @Getter
 @Setter
 public class FetchLogRequest {
+
+    String locationCode;
     LocalDateTime dateTime;
     String dateTimeStr;
 
