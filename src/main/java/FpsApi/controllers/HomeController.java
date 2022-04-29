@@ -38,7 +38,7 @@ public class HomeController {
         return mainService.addUserPlayLog(logRequest);
     }
 
-    @PostMapping(value = "/updatelogm")
+    @PostMapping(value = "/updateLog")
     public AbstractResponse updateUserLog(@RequestBody AddLogRequest logRequest) throws Exception{
        return mainService.updateUserPlayLog(logRequest);
     }

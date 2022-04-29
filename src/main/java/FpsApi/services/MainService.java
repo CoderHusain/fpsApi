@@ -1,5 +1,6 @@
 package FpsApi.services;
 
+import FpsApi.Constants;
 import FpsApi.models.entities.User;
 import FpsApi.models.entities.UserPlayLog;
 import FpsApi.models.request.AddLogRequest;
@@ -11,6 +12,7 @@ import FpsApi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Comparator;
 import java.util.List;
 
@@ -53,6 +55,7 @@ public class MainService {
         UserPlayLog log = new UserPlayLog();
         log.setUser(user);
         log.setGameMode(logRequest.getGameMode());
+        log.setPlayingStatus(Constants.PlayingStatus.PLAYING);
         log.setStartDateTime(logRequest.getStartDateTime());
 //        log.setEndDateTime(logRequest.getEndDateTime());
         logRepository.save(log);
@@ -60,6 +63,7 @@ public class MainService {
         return response;
     }
 
+    @Transactional
     public AbstractResponse updateUserPlayLog(AddLogRequest logRequest) throws Exception {
         AbstractResponse response = new AbstractResponse();
         UserPlayLog userPlayLog = logRepository.findByGuid(logRequest.getGuid());

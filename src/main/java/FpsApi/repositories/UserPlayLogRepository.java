@@ -29,7 +29,7 @@ public class UserPlayLogRepository extends AbstractRepository<UserPlayLog> {
     }
 
     public List<UserPlayLog> getLogsByStatus(Constants.PlayingStatus status){
-        String hql = "SELECT * FROM UserPlayLog where playingStatus = :status ";
+        String hql = "FROM UserPlayLog log where log.playingStatus = :status ";
         TypedQuery<UserPlayLog> query = entityManager.createQuery(hql,UserPlayLog.class);
         query.setParameter("status",status);
         return query.getResultList();

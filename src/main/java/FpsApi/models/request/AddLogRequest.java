@@ -24,7 +24,7 @@ public class AddLogRequest {
     String endDateTimeStr;
 
     public void setStartDateTimeStr(String startDateTimeStr){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         try{
             this.startDateTime = LocalDateTime.parse(startDateTimeStr,formatter);
             this.startDateTimeStr = startDateTimeStr;
@@ -32,7 +32,7 @@ public class AddLogRequest {
     }
 
     public void setLastModifiedTimeStr(String lastModifiedTimeStr){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         try{
             this.lastModifiedTime = LocalDateTime.parse(lastModifiedTimeStr,formatter);
             this.lastModifiedTimeStr = lastModifiedTimeStr;
@@ -40,7 +40,7 @@ public class AddLogRequest {
     }
 
     public void setEndDateTimeStr(String endDateTimeStr){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         try{
             this.endDateTime = LocalDateTime.parse(endDateTimeStr,formatter);
             this.endDateTimeStr = endDateTimeStr;
